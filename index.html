@@ -1,299 +1,402 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Nuvo</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-
-  <style>
-    :root {
-      --verde: #006600;
-      --amarelo: #FFD700;
-      --preto: #000000;
-      --branco: #ffffff;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: 'Poppins', sans-serif;
-      background-color: #000000;
-      color: white;
-    }
-
-    .botao-principal,
-    .botao-secundario {
-      text-decoration: none;
-      display: inline-block;
-    }
-
-    .menu {
-      background-color: #000000;
-      position: sticky;
-      top: 0px;
-      z-index: 10;
-    }
-
-    .menu-container {
-      display: flex;
-      align-items: center;
-      padding: 25px 24px;
-    }
-
-    .menu-container .logo {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-
-    .logo img {
-      height: 40px;
-    }
-
-    .menu-links {
-      margin-left: auto;
-      display: flex;
-      align-items: center;
-      gap: 30px;
-      font-weight: bold;
-    }
-
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 20px;
-      margin-right: 20px;
-    }
-
-    nav a {
-      text-decoration: none;
-      color: white;
-      font-weight: 650;
-      font-size: 15px;
-      transition: color 0.3s ease;
-    }
-
-    nav a:hover {
-      color: #2b7f2b;
-    }
-
-    .icone-carrinho i {
-      font-size: 20px;
-      color: white;
-      cursor: pointer;
-    }
-
-    .destaque {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 80px 250px;
-      background-color: #2b7f2b;
-      border-bottom-left-radius: 80px;
-      border-top-right-radius: 80px;
-      flex-wrap: wrap;
-    }
-
-    .texto-destaque {
-      max-width: 500px;
-    }
-
-    .texto-destaque h2 {
-      font-size: 22px;
-      color: #000000;
-    }
-
-    .texto-destaque h1 {
-      font-size: 44px;
-      margin: 10px 0;
-      font-weight: 700;
-      color: white;
-    }
-
-    .texto-destaque p {
-      margin: 15px 0;
-      font-size: 18px;
-      color: #f5f5f5;
-    }
-
-    .botoes-destaque {
-      display: flex;
-      gap: 20px;
-      margin-top: 20px;
-    }
-
-    .botao-principal {
-      padding: 10px 20px;
-      background-color: #000000;
-      color: white;
-      border: none;
-      border-radius: 30px;
-      font-size: 16px;
-      cursor: pointer;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-      transition: background 0.3s ease;
-    }
-
-    .botao-principal:hover {
-      background-color: #000000;
-    }
-
-    .botao-secundario {
-      padding: 10px 20px;
-      background-color: white;
-      color: #031B2B;
-      border: none;
-      border-radius: 30px;
-      font-size: 16px;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-
-    .botao-secundario:hover {
-      background-color: #e6e6e6;
-    }
-
-    .imagem-destaque img {
-      height: 500px;
-      max-width: 100%;
-    }
-
-    .espaco {
-      height: 50px;
-      background-color: rgb(0, 0, 0);
-      border-top-left-radius: -37px;
-    }
-
-    section {
-      padding: 5rem 2rem;
-      transition: all 0.5s ease;
-    }
-
-    h2 {
-      text-align: center;
-      font-size: 2.5rem;
-      margin-bottom: 2rem;
-      color: var(--verde);
-      position: relative;
-    }
-
-    h2::after {
-      content: '';
-      display: block;
-      width: 60px;
-      height: 4px;
-      background: var(--amarelo);
-      margin: 0.5rem auto 0;
-      border-radius: 2px;
-    }
-
-    .container {
-      max-width: 1400px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-    }
-
-    .card {
-      background-color: #f5f5f5;
-      padding: 1.5rem;
-      border-left: 5px solid var(--amarelo);
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-      transition: transform 0.3s;
-      color: #000;
-    }
-
-    .card:hover {
-      transform: translateY(-5px);
-    }
-
-    video {
-      border-radius: 10px;
-      width: 100%;
-      max-width: 600px;
-    }
-
-    footer {
-      background-color: rgb(0, 0, 0);
-      color: rgb(255, 255, 255);
-      text-align: center;
-      padding: 2rem 1rem;
-    }
-
-    footer p {
-      margin: 0.5rem 0;
-    }
-
-    #sobre, #reviews, #eventos, #team {
-      background-color: white;
-      color: black;
-    }
-
-    #sobre h2,
-    #reviews h2,
-    #eventos h2,
-    #team h2 {
-      color: var(--verde);
-    }
-
-    #redes-sociais {
-      background-color: #ffffff;
-      padding: 4rem 2rem;
-      text-align: center;
-    }
-
-    #redes-sociais h2 {
-      color: var(--verde);
-      margin-bottom: 2rem;
-      font-size: 2.2rem;
-    }
-
-    .redes-container {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      flex-wrap: wrap;
-    }
-
-    .rede {
-      color: white;
-      font-size: 1.1rem;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 12px 20px;
-      border-radius: 30px;
-      transition: background 0.3s ease;
-    }
-
-    .rede i {
-      font-size: 20px;
-    }
-
-    .instagram { background-color: #E1306C; }
-    .instagram:hover { background-color: #c6265b; }
-
-    .youtube { background-color: #FF0000; }
-    .youtube:hover { background-color: #cc0000; }
-
-    .tiktok { background-color: #000000; }
-    .tiktok:hover { background-color: #1a1a1a; }
-
-    .facebook { background-color: #1877F2; }
-    .facebook:hover { background-color: #125dc1; }
-  </style>
-</head>
+  <!DOCTYPE html>
+  <html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Nuvo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  
+    <style>
+      :root {
+        --verde: #006600;
+        --amarelo: #FFD700;
+        --preto: #000000;
+        --branco: #ffffff;
+      }
+  
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        scroll-behavior: smooth;
+      }
+  
+      body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #000000;
+        color: white;
+      }
+  
+      .botao-principal,
+      .botao-secundario {
+        text-decoration: none;
+        display: inline-block;
+      }
+  
+      .menu {
+        background-color: #000000;
+        position: sticky;
+        top: 0px;
+        z-index: 10;
+      }
+  
+      .menu-container {
+        display: flex;
+        align-items: center;
+        padding: 25px 24px;
+        position: relative;
+      }
+  
+      .menu-container .logo {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+  
+      .logo img {
+        height: 40px;
+      }
+  
+      .menu-links {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        font-weight: bold;
+      }
+  
+      nav ul {
+        list-style: none;
+        display: flex;
+        gap: 20px;
+        margin-right: 20px;
+      }
+  
+      nav a {
+        text-decoration: none;
+        color: white;
+        font-weight: 650;
+        font-size: 15px;
+        transition: color 0.3s ease;
+      }
+  
+      nav a:hover {
+        color: #2b7f2b;
+      }
+  
+      .icone-carrinho i {
+        font-size: 20px;
+        color: white;
+        cursor: pointer;
+      }
+  
+      .menu-toggle {
+        display: none;
+        font-size: 30px;
+        background: none;
+        border: none;
+        color: white;
+        cursor: pointer;
+        position: absolute;
+        right: 24px;
+        top: 24px;
+        z-index: 11;
+      }
+  
+      .destaque {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 80px 250px;
+        background-color: #2b7f2b;
+        border-bottom-left-radius: 80px;
+        border-top-right-radius: 80px;
+        flex-wrap: wrap;
+      }
+  
+      .texto-destaque {
+        max-width: 500px;
+      }
+  
+      .texto-destaque h2 {
+        font-size: 22px;
+        color: #000000;
+      }
+  
+      .texto-destaque h1 {
+        font-size: 44px;
+        margin: 10px 0;
+        font-weight: 700;
+        color: white;
+      }
+  
+      .texto-destaque p {
+        margin: 15px 0;
+        font-size: 18px;
+        color: #f5f5f5;
+      }
+  
+      .botoes-destaque {
+        display: flex;
+        gap: 20px;
+        margin-top: 20px;
+      }
+  
+      .botao-principal {
+        padding: 10px 20px;
+        background-color: #000000;
+        color: white;
+        border: none;
+        border-radius: 30px;
+        font-size: 16px;
+        cursor: pointer;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+        transition: background 0.3s ease;
+      }
+  
+      .botao-principal:hover {
+        background-color: #000000;
+      }
+  
+      .botao-secundario {
+        padding: 10px 20px;
+        background-color: white;
+        color: #031B2B;
+        border: none;
+        border-radius: 30px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+      }
+  
+      .botao-secundario:hover {
+        background-color: #e6e6e6;
+      }
+  
+      .imagem-destaque img {
+        height: 500px;
+        max-width: 100%;
+      }
+  
+      .espaco {
+        height: 50px;
+        background-color: rgb(0, 0, 0);
+        border-top-left-radius: -37px;
+      }
+  
+      section {
+        padding: 5rem 2rem;
+        transition: all 0.5s ease;
+      }
+  
+      h2 {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+        color: var(--verde);
+        position: relative;
+      }
+  
+      h2::after {
+        content: '';
+        display: block;
+        width: 60px;
+        height: 4px;
+        background: var(--amarelo);
+        margin: 0.5rem auto 0;
+        border-radius: 2px;
+      }
+  
+      .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+      }
+  
+      .card {
+        background-color: #f5f5f5;
+        padding: 1.5rem;
+        border-left: 5px solid var(--amarelo);
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        transition: transform 0.3s;
+        color: #000;
+      }
+  
+      .card:hover {
+        transform: translateY(-5px);
+      }
+  
+      video {
+        border-radius: 10px;
+        width: 100%;
+        max-width: 600px;
+      }
+  
+      footer {
+        background-color: rgb(0, 0, 0);
+        color: rgb(255, 255, 255);
+        text-align: center;
+        padding: 2rem 1rem;
+      }
+  
+      footer p {
+        margin: 0.5rem 0;
+      }
+  
+      #sobre, #reviews, #eventos, #team {
+        background-color: white;
+        color: black;
+      }
+  
+      #sobre h2,
+      #reviews h2,
+      #eventos h2,
+      #team h2 {
+        color: var(--verde);
+      }
+  
+      #redes-sociais {
+        background-color: #ffffff;
+        padding: 4rem 2rem;
+        text-align: center;
+      }
+  
+      #redes-sociais h2 {
+        color: var(--verde);
+        margin-bottom: 2rem;
+        font-size: 2.2rem;
+      }
+  
+      .redes-container {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        flex-wrap: wrap;
+      }
+  
+      .rede {
+        color: white;
+        font-size: 1.1rem;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 20px;
+        border-radius: 30px;
+        transition: background 0.3s ease;
+      }
+  
+      .rede i {
+        font-size: 20px;
+      }
+  
+      .instagram { background-color: #E1306C; }
+      .instagram:hover { background-color: #c6265b; }
+  
+      .youtube { background-color: #FF0000; }
+      .youtube:hover { background-color: #cc0000; }
+  
+      .tiktok { background-color: #000000; }
+      .tiktok:hover { background-color: #1a1a1a; }
+  
+      .facebook { background-color: #1877F2; }
+      .facebook:hover { background-color: #125dc1; }
+  
+      @media (max-width: 768px) {
+        .menu-container {
+          flex-direction: column;
+          align-items: center;
+          padding: 20px;
+          text-align: center;
+        }
+  
+        .menu-toggle {
+          display: block;
+        }
+  
+        .menu-links {
+          flex-direction: column;
+          align-items: center;
+          gap: 15px;
+          margin-top: 10px;
+          width: 100%;
+        }
+  
+        nav ul {
+          flex-direction: column;
+          gap: 15px;
+          margin-top: 20px;
+          background-color: #000;
+          padding: 20px;
+          border-radius: 10px;
+          display: none;
+        }
+  
+        nav ul.active {
+          display: flex;
+        }
+  
+        .icone-carrinho {
+          margin-top: 10px;
+        }
+  
+        .destaque {
+          flex-direction: column;
+          align-items: center;
+          padding: 40px 20px;
+          text-align: center;
+        }
+  
+        .imagem-destaque img {
+          height: auto;
+          width: 100%;
+          max-width: 300px;
+          margin-top: 20px;
+        }
+  
+        .botoes-destaque {
+          flex-direction: column;
+          align-items: center;
+          gap: 15px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+  
+    <!-- MENU -->
+    <header class="menu">
+      <div class="menu-container">
+        <div class="logo">
+          <img src="imagens/" alt="Logo NUvo" />
+        </div>
+        <button class="menu-toggle" onclick="document.querySelector('nav ul').classList.toggle('active')">
+          &#9776;
+        </button>
+        <nav class="menu-links">
+          <ul>
+            <li><a href="#sobre">SOBRE</a></li>
+            <li><a href="#reviews">CLIENTES</a></li>
+            <li><a href="#eventos">EVENTOS</a></li>
+            <li><a href="#team">TIME</a></li>
+            <li><a href="#redes-sociais">CONTATOS</a></li>
+          </ul>
+          <div class="icone-carrinho">
+            <i class="fas fa-shopping-cart"></i>
+          </div>
+        </nav>
+      </div>
+    </header>
+  
+    <!-- Resto do conteúdo segue igual -->
+  
 <body>
 
   <!-- MENU -->
